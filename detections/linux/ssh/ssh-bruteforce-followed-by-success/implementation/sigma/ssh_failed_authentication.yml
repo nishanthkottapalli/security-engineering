@@ -1,0 +1,21 @@
+title: Linux SSH Authentication Failure
+id: 9031844c-40a6-4fef-9555-b507735a36d6
+status: test
+description: Detects a failed password authentication recorded by OpenSSH.
+author: Nishanth Konsultancy
+date: 2026-07-10
+logsource:
+  product: linux
+  service: auth
+selection:
+  process.name: sshd
+  message|startswith: 'Failed password for '
+condition: selection
+falsepositives:
+  - User typing error
+  - Approved security testing
+level: low
+tags:
+  - attack.credential_access
+  - attack.t1110
+  - attack.t1110.001
