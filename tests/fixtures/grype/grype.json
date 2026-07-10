@@ -1,0 +1,24 @@
+{
+  "matches": [
+    {
+      "artifact": {
+        "name": "requests",
+        "version": "2.31.0"
+      },
+      "vulnerability": {
+        "id": "CVE-2099-0001",
+        "severity": "High",
+        "description": "Synthetic Grype duplicate.",
+        "knownExploited": true,
+        "fix": {
+          "versions": [
+            "2.32.0"
+          ]
+        },
+        "urls": [
+          "https://example.invalid/CVE-2099-0001"
+        ]
+      }
+    }
+  ]
+}
