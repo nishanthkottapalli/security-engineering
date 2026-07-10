@@ -1,6 +1,6 @@
-# Security Engineering Capabilities Lab
+# Security Engineering
 
-A fully executable portfolio demonstrating how defensive security controls are
+A fully executable lab demonstrating how defensive security controls are
 designed, implemented, tested, operated and evidenced.
 
 The repository keeps detection engineering as its core and adds the adjacent
