@@ -82,7 +82,7 @@ In those situations:
 
 The current exception register is maintained in:
 
-**SECURITY_EXCEPTIONS.md**
+**[SECURITY_EXCEPTIONS.md](SECURITY_EXCEPTIONS.md)**
 
 ---
 
