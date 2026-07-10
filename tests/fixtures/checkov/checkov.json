@@ -1,0 +1,14 @@
+{
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_AWS_DEMO_1",
+        "check_name": "Synthetic encryption control",
+        "resource": "aws_s3_bucket.demo",
+        "file_path": "/terraform/main.tf",
+        "severity": "HIGH",
+        "guideline": "https://example.invalid/CKV_AWS_DEMO_1"
+      }
+    ]
+  }
+}
