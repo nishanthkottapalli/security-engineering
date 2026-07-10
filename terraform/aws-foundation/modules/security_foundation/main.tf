@@ -21,8 +21,8 @@ resource "aws_kms_key" "logs" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid       = "EnableAccountAdministration"
-        Effect    = "Allow"
+        Sid    = "EnableAccountAdministration"
+        Effect = "Allow"
         Principal = {
           AWS = "arn:${data.aws_partition.current.partition}:iam::${data.aws_caller_identity.current.account_id}:root"
         }
@@ -45,8 +45,8 @@ resource "aws_kms_key" "logs" {
         }
       },
       {
-        Sid       = "AllowCloudWatchLogsEncryption"
-        Effect    = "Allow"
+        Sid    = "AllowCloudWatchLogsEncryption"
+        Effect = "Allow"
         Principal = {
           Service = "logs.${data.aws_region.current.region}.${data.aws_partition.current.dns_suffix}"
         }
@@ -217,7 +217,7 @@ resource "aws_s3_bucket_policy" "evidence" {
         Resource  = "${aws_s3_bucket.evidence.arn}/AWSLogs/${data.aws_caller_identity.current.account_id}/*"
         Condition = {
           StringEquals = {
-            "s3:x-amz-acl" = "bucket-owner-full-control"
+            "s3:x-amz-acl"  = "bucket-owner-full-control"
             "AWS:SourceArn" = "arn:${data.aws_partition.current.partition}:cloudtrail:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:trail/${local.prefix}"
           }
         }
