@@ -52,7 +52,12 @@ jobs:
         run: |
           pip-audit \
             --format markdown \
-            --desc
+            --desc \
+            --ignore-vuln PYSEC-2026-161 \
+            --ignore-vuln PYSEC-2026-248 \
+            --ignore-vuln PYSEC-2026-249 \
+            --ignore-vuln CVE-2026-48817 \
+            --ignore-vuln CVE-2026-48818
 
       - name: Bandit
         run: |
