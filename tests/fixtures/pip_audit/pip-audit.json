@@ -1,0 +1,20 @@
+[
+  {
+    "name": "requests",
+    "version": "2.31.0",
+    "vulns": [
+      {
+        "id": "CVE-2099-0001",
+        "aliases": [
+          "GHSA-DEMO-0001"
+        ],
+        "fix_versions": [
+          "2.32.0"
+        ],
+        "severity": "high",
+        "description": "Synthetic requests vulnerability used only for parser tests.",
+        "exploit_available": true
+      }
+    ]
+  }
+]
