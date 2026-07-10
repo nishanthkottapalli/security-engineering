@@ -357,10 +357,80 @@ resource "aws_config_configuration_recorder_status" "this" {
   depends_on = [aws_config_delivery_channel.this]
 }
 
+################################################################################
+# KMS key for SNS security notifications
+################################################################################
+
+resource "aws_kms_key" "security_alerts" {
+  description             = "KMS key for ${local.prefix} security alerts"
+  deletion_window_in_days = 30
+  enable_key_rotation     = true
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [
+
+      {
+        Sid    = "EnableRootPermissions"
+        Effect = "Allow"
+
+        Principal = {
+          AWS = "arn:${data.aws_partition.current.partition}:iam::${data.aws_caller_identity.current.account_id}:root"
+        }
+
+        Action   = "kms:*"
+        Resource = "*"
+      },
+
+      {
+        Sid    = "AllowSNS"
+        Effect = "Allow"
+
+        Principal = {
+          Service = "sns.amazonaws.com"
+        }
+
+        Action = [
+          "kms:Decrypt",
+          "kms:Encrypt",
+          "kms:GenerateDataKey*",
+          "kms:DescribeKey"
+        ]
+
+        Resource = "*"
+
+        Condition = {
+          StringEquals = {
+            "aws:SourceAccount" = data.aws_caller_identity.current.account_id
+          }
+        }
+      }
+    ]
+  })
+
+  tags = merge(
+    local.tags,
+    {
+      Name = "${local.prefix}-security-alerts-kms"
+    }
+  )
+}
+
+resource "aws_kms_alias" "security_alerts" {
+  name          = "alias/${local.prefix}-security-alerts"
+  target_key_id = aws_kms_key.security_alerts.key_id
+}
+
+################################################################################
+# SNS Topic
+################################################################################
+
 resource "aws_sns_topic" "security_alerts" {
   name              = "${local.prefix}-security-alerts"
-  kms_master_key_id = "alias/aws/sns"
-  tags              = local.tags
+  kms_master_key_id = aws_kms_key.security_alerts.arn
+
+  tags = local.tags
 }
 
 resource "aws_sns_topic_subscription" "email" {
