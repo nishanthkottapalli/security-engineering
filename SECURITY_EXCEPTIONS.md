@@ -88,8 +88,7 @@ The Windows-specific StaticFiles issue is not applicable because:
 
 Low
 
-Current deployment architecture mitigates the practical exploitation
-paths described in the advisories.
+Compensating controls reduce exposure to the reported issues in the supported deployment architecture, but they are not considered equivalent to upgrading to a fixed upstream release.
 
 ---
 
