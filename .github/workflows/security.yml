@@ -64,27 +64,41 @@ jobs:
           bandit -q -r src
 
   trivy:
+    name: Trivy
     runs-on: ubuntu-latest
+  
     steps:
       - uses: actions/checkout@v7
   
-      - name: Repository scan
+      # Human-readable output in CI logs
+      - name: Trivy console scan
         uses: aquasecurity/trivy-action@v0.35.0
         with:
           scan-type: fs
-          scanners: vuln,secret,misconfig
+          scanners: vuln,misconfig,secret
+          format: table
           severity: HIGH,CRITICAL
           ignore-unfixed: true
+          exit-code: "1"
+  
+      # SARIF for GitHub Security tab
+      - name: Trivy SARIF
+        if: always()
+        uses: aquasecurity/trivy-action@v0.35.0
+        with:
+          scan-type: fs
+          scanners: vuln,misconfig,secret
           format: sarif
           output: trivy-results.sarif
-          exit-code: "1"
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "0"
   
       - name: Upload SARIF
         if: always()
         uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: trivy-results.sarif
-
 
   secrets:
     name: Gitleaks
