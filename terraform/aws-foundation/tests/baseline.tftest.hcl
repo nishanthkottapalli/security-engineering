@@ -1,6 +1,26 @@
-mock_provider "aws" {}
+mock_provider "aws" {
+
+  mock_data "aws_partition" {
+    defaults = {
+      partition = "aws"
+    }
+  }
+
+  mock_data "aws_region" {
+    defaults = {
+      name = "ap-south-1"
+    }
+  }
+
+  mock_data "aws_caller_identity" {
+    defaults = {
+      account_id = "123456789012"
+    }
+  }
+}
 
 run "foundational_baseline_plans_without_credentials" {
+
   command = plan
 
   variables {
