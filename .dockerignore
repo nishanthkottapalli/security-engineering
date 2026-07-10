@@ -1,0 +1,14 @@
+.git
+.github
+.venv
+.vagrant
+__pycache__
+.pytest_cache
+.ruff_cache
+.mypy_cache
+build
+dist
+terraform/**/.terraform
+terraform/**/*.tfstate*
+lab-output
+uploads
