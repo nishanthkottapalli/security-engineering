@@ -5,11 +5,10 @@ import uuid
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from secops_lab.api.config import get_settings
 from secops_lab.api.routers import audit, auth, uploads, users
-
-from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 settings = get_settings()
 app = FastAPI(
