@@ -7,7 +7,7 @@ import typer
 from secops_lab.detection.cli import app as detection_app
 from secops_lab.triage.cli import app as triage_app
 
-app = typer.Typer(help="Security engineering capability lab CLI.", no_args_is_help=True)
+app = typer.Typer(help="Security engineering lab CLI.", no_args_is_help=True)
 app.add_typer(detection_app, name="detection")
 app.add_typer(triage_app, name="triage")
 
