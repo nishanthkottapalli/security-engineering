@@ -1,24 +1,92 @@
 # Security Policy
 
-## Supported branch
+## Overview
 
-Security fixes are applied to the default branch and the latest tagged release.
+The Security Capabilities Lab demonstrates secure software engineering,
+detection engineering, vulnerability management, cloud security and
+secure SDLC practices.
 
-## Reporting a vulnerability
+Security is treated as a first-class engineering concern.
 
-Do not open a public issue for a vulnerability that may expose users of this
-repository. Report it privately through GitHub's private vulnerability reporting
-feature. Include the affected component, reproduction steps, impact, and any
-suggested remediation.
+## Reporting a Security Issue
 
-## Responsible-use boundary
+If you believe you have discovered a security vulnerability in this
+repository, please open a private security advisory or contact the
+maintainers directly.
 
-This repository contains defensive security labs. Run them only against systems
-you own or are explicitly authorised to test. The supplied simulations are
-bounded to disposable local containers or virtual machines. Do not point them at
-third-party systems.
+Please include:
 
-The repository intentionally uses synthetic telemetry and a deliberately small
-sample application. It must not be treated as a production security product
-without an organisation-specific architecture review, threat model, operational
-ownership, monitoring, backups, and formal acceptance testing.
+- affected component
+- reproduction steps
+- expected behaviour
+- observed behaviour
+- proof of concept (if applicable)
+- affected version
+- mitigation suggestions
+
+We aim to:
+
+- acknowledge reports promptly
+- validate findings
+- determine impact
+- develop a remediation plan
+- publish fixes where appropriate
+
+---
+
+## Supported Versions
+
+| Version | Supported |
+|----------|-----------|
+| 1.x | Yes |
+
+---
+
+## Security Tooling
+
+This repository continuously validates security using:
+
+- pip-audit
+- Bandit
+- Trivy
+- Gitleaks
+- Ruff
+- Mypy
+- GitHub Actions
+- SBOM generation
+- Docker image scanning
+
+---
+
+## Vulnerability Management
+
+Dependencies are reviewed continuously.
+
+Critical and High vulnerabilities block CI unless a documented,
+temporary exception exists.
+
+---
+
+## Temporary Security Exceptions
+
+Occasionally an upstream dependency cannot be upgraded because another
+supported framework has not yet released a compatible version.
+
+In those situations:
+
+- compensating controls are implemented
+- the exception is documented
+- the exception is reviewed regularly
+- the exception is removed immediately once a supported upgrade path
+  becomes available
+
+The current exception register is maintained in:
+
+**SECURITY_EXCEPTIONS.md**
+
+---
+
+## Responsible Disclosure
+
+Please do not disclose vulnerabilities publicly before maintainers have
+had a reasonable opportunity to investigate and remediate the issue.
