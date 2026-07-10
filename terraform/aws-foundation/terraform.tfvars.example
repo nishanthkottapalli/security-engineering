@@ -1,0 +1,13 @@
+aws_region        = "ap-south-1"
+project_name      = "security-capabilities-lab"
+environment       = "lab"
+notification_email = "security@example.com"
+enable_inspector  = true
+vpc_id            = null
+log_retention_days = 365
+force_destroy     = false
+
+tags = {
+  Owner      = "security-engineering"
+  CostCentre = "security-lab"
+}
