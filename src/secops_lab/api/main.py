@@ -21,6 +21,24 @@ app = FastAPI(
     redoc_url=None,
 )
 
+from starlette.middleware.trustedhost import TrustedHostMiddleware
+
+allowed_hosts = [
+    "localhost",
+    "127.0.0.1",
+]
+
+if settings.environment == "production":
+    # Replace with your production hostnames.
+    allowed_hosts = [
+        "api.example.com",
+    ]
+
+app.add_middleware(
+    TrustedHostMiddleware,
+    allowed_hosts=allowed_hosts,
+)
+
 
 @app.middleware("http")
 async def request_context(request: Request, call_next):  # type: ignore[no-untyped-def]
