@@ -1,0 +1,26 @@
+title: Linux SSH Failures Followed by Success - Correlation Specification
+id: 47e44ae7-240f-47d9-8c4c-dad39e937f97
+status: experimental
+description: >-
+  Portable correlation specification. A backend must count five failures and
+  then observe a success for the same host, user and source IP within 120 seconds.
+author: Nishanth Konsultancy
+date: 2026-07-10
+correlation:
+  type: temporal_ordered
+  rules:
+    - 9031844c-40a6-4fef-9555-b507735a36d6
+  group-by:
+    - host.name
+    - user.name
+    - source.ip
+  timespan: 2m
+  condition:
+    gte: 5
+level: high
+tags:
+  - attack.credential_access
+  - attack.initial_access
+  - attack.t1110.001
+  - attack.t1078
+  - attack.t1021.004
