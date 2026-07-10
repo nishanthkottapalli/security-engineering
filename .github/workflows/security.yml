@@ -48,7 +48,7 @@ jobs:
           pip install pipdeptree
           pipdeptree -p fastapi
 
-      - name: pip-audit
+      - name: Audit runtime dependencies
         run: |
           pip-audit \
             --format markdown \
