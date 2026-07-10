@@ -71,7 +71,7 @@ full-demo: smoke docker-demo sbom wazuh-test terraform-test
 	@echo "All executable phase demonstrations completed."
 
 sbom:
-	./scripts/generate_sbom.sh
+	bash ./scripts/generate_sbom.sh
 
 wazuh-test:
 	$(COMPOSE) --profile wazuh run --rm wazuh-logtest
