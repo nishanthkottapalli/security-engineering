@@ -33,41 +33,22 @@ jobs:
         run: |
           pip install -e ".[dev]"
 
-      - name: Show installed packages
-        run: |
-          python -m pip list
-    
-      - name: Show dependency tree
-        run: |
-          pip install pipdeptree
-          pipdeptree
-
-      - name: Show FastAPI/Starlette versions
+      - name: Display resolved versions
         run: |
           python - <<'PY'
           import fastapi
           import starlette
-          print("FastAPI :", fastapi.__version__)
-          print("Starlette:", starlette.__version__)
+
+          print(f"FastAPI   : {fastapi.__version__}")
+          print(f"Starlette : {starlette.__version__}")
           PY
 
-      - name: Show dependency tree
+      - name: Dependency tree
         run: |
           pip install pipdeptree
           pipdeptree -p fastapi
 
-      - name: Show framework versions
-        run: |
-          python - <<'PY'
-          import fastapi
-          import starlette
-      
-          print("FastAPI:", fastapi.__version__)
-          print("Starlette:", starlette.__version__)
-          print("Python OK")
-          PY
-
-      - name: Audit runtime dependencies
+      - name: pip-audit
         run: |
           pip-audit \
             --format markdown \
