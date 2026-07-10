@@ -56,6 +56,17 @@ jobs:
           pip install pipdeptree
           pipdeptree -p fastapi
 
+      - name: Show framework versions
+        run: |
+          python - <<'PY'
+          import fastapi
+          import starlette
+      
+          print("FastAPI:", fastapi.__version__)
+          print("Starlette:", starlette.__version__)
+          print("Python OK")
+          PY
+
       - name: Audit runtime dependencies
         run: |
           pip-audit \
