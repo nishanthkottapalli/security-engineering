@@ -36,11 +36,25 @@ jobs:
       - name: Show installed packages
         run: |
           python -m pip list
-
+    
       - name: Show dependency tree
         run: |
           pip install pipdeptree
           pipdeptree
+
+      - name: Show FastAPI/Starlette versions
+        run: |
+          python - <<'PY'
+          import fastapi
+          import starlette
+          print("FastAPI :", fastapi.__version__)
+          print("Starlette:", starlette.__version__)
+          PY
+
+      - name: Show dependency tree
+        run: |
+          pip install pipdeptree
+          pipdeptree -p fastapi
 
       - name: Audit runtime dependencies
         run: |
