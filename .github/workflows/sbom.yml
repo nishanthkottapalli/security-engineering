@@ -1,0 +1,24 @@
+name: SBOM
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cyclonedx:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Generate repository SBOM
+        run: make sbom
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v6
+        with:
+          name: security-capabilities-sbom
+          path: lab-output/sbom.cdx.json
+          if-no-files-found: error
