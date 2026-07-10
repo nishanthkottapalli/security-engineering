@@ -9,6 +9,8 @@ from fastapi.responses import JSONResponse
 from secops_lab.api.config import get_settings
 from secops_lab.api.routers import audit, auth, uploads, users
 
+from starlette.middleware.trustedhost import TrustedHostMiddleware
+
 settings = get_settings()
 app = FastAPI(
     title="Security Capabilities Secure-SDLC Lab",
@@ -20,8 +22,6 @@ app = FastAPI(
     docs_url="/docs" if settings.environment != "production" else None,
     redoc_url=None,
 )
-
-from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 allowed_hosts = [
     "localhost",
