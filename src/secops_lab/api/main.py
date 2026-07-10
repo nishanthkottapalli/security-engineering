@@ -25,6 +25,7 @@ app = FastAPI(
 allowed_hosts = [
     "localhost",
     "127.0.0.1",
+    "testserver",
 ]
 
 if settings.environment == "production":
