@@ -1,0 +1,15 @@
+<decoder name="lab-sshd">
+  <program_name>^sshd$</program_name>
+</decoder>
+
+<decoder name="lab-sshd-failure">
+  <parent>lab-sshd</parent>
+  <regex type="pcre2">^Failed password for (?:invalid user )?(\S+) from ([0-9A-Fa-f:.]+) port \d+ ssh2$</regex>
+  <order>user,srcip</order>
+</decoder>
+
+<decoder name="lab-sshd-success">
+  <parent>lab-sshd</parent>
+  <regex type="pcre2">^Accepted (?:password|publickey) for (\S+) from ([0-9A-Fa-f:.]+) port \d+ ssh2(?:: .*)?$</regex>
+  <order>user,srcip</order>
+</decoder>
