@@ -1,0 +1,12 @@
+tests:
+  - id: positive_privileged_compromise
+    fixture: tests/fixtures/detection/ssh_compromise.log
+    expected_alerts: 1
+    expected_detection_id: DET-LINUX-SSH-001
+    expected_severity: critical
+  - id: negative_failures_without_success
+    fixture: tests/fixtures/detection/ssh_failures_only.log
+    expected_alerts: 0
+  - id: negative_success_from_different_source
+    fixture: tests/fixtures/detection/ssh_different_source.log
+    expected_alerts: 0

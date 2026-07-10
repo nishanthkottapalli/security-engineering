@@ -1,0 +1,31 @@
+telemetry:
+  sources:
+    - linux_authentication_log
+    - openssh_sshd
+  collector_options:
+    - wazuh_agent
+    - local_file_replay_for_lab
+  required_fields:
+    - timestamp
+    - hostname
+    - username
+    - source_ip
+    - authentication_result
+  optional_enrichments:
+    - user_privilege
+    - asset_criticality
+    - source_ip_reputation
+  quality_requirements:
+    timestamp: UTC or synchronised host time
+    hostname: stable asset identifier
+    username: exact parsed target account
+    source_ip: canonical IPv4 or IPv6
+  failure_modes:
+    - authentication logging disabled
+    - decoder mismatch after OpenSSH message change
+    - source hidden by a proxy or bastion
+    - clock skew greater than the correlation window
+    - log delivery delay greater than the correlation window
+  coverage_boundaries:
+    - distributed password spraying requires a different aggregation strategy
+    - public-key theft without preceding failures is not detected

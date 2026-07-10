@@ -1,0 +1,22 @@
+id: DET-LINUX-SSH-001
+title: SSH password guessing followed by successful login
+status: production_candidate
+version: 1.0.0
+owners:
+  - detection-engineering
+severity: high
+confidence: high
+threshold: 5
+timeframe_seconds: 120
+group_by:
+  - hostname
+  - username
+  - source_ip
+mitre:
+  primary:
+    - T1110
+    - T1110.001
+    - T1078
+  supporting:
+    - T1021.004
+review_interval_days: 90
