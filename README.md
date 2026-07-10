@@ -113,7 +113,7 @@ make demo
 Generated evidence is written under `lab-output/` and is intentionally excluded
 from source control.
 
-## Phase 1 — detection engineering
+## 1) detection engineering
 
 The package at
 [`detections/linux/ssh/ssh-bruteforce-followed-by-success`](detections/linux/ssh/ssh-bruteforce-followed-by-success/)
@@ -125,7 +125,7 @@ make detection-demo
 make wazuh-test
 ```
 
-## Phase 2 — security automation
+## 2) security automation
 
 The triage engine accepts representative JSON produced by pip-audit, Trivy,
 Grype and Checkov. It normalises records, merges scanner duplicates and assigns a
@@ -146,7 +146,7 @@ lab-output/triage/findings.csv
 lab-output/triage/report.md
 ```
 
-## Phase 3 — AWS security
+## 3) AWS security
 
 The Terraform baseline enables encrypted evidence storage, CloudTrail,
 GuardDuty, Security Hub, Inspector, Config, ECR enhanced scanning, alert routing,
@@ -161,7 +161,7 @@ make terraform-test
 A real apply requires a dedicated AWS lab account, short-lived credentials and
 explicit review. See [`terraform/aws-foundation`](terraform/aws-foundation/).
 
-## Phase 4 — secure SDLC
+## 4) secure SDLC
 
 The sample service demonstrates:
 
