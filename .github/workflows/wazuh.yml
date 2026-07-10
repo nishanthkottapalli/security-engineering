@@ -1,0 +1,21 @@
+name: Wazuh Rules
+
+on:
+  pull_request:
+    paths:
+      - 'detections/**'
+      - 'docker/wazuh/**'
+      - 'tests/fixtures/detection/**'
+      - '.github/workflows/wazuh.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  logtest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Validate Wazuh decoder and correlation behaviour
+        run: make wazuh-test
