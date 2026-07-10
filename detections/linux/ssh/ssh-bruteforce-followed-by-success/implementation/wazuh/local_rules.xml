@@ -1,0 +1,39 @@
+<group name="local,lab_ssh,">
+  <rule id="100100" level="5">
+    <decoded_as>lab-sshd-failure</decoded_as>
+    <description>Lab SSH authentication failure for $(user) from $(srcip).</description>
+    <group>authentication_failed,attack.t1110,attack.t1110.001,</group>
+  </rule>
+
+  <rule id="100101" level="10" frequency="5" timeframe="120">
+    <if_matched_sid>100100</if_matched_sid>
+    <same_srcip />
+    <same_user />
+    <description>Lab SSH password guessing: repeated failures for $(user) from $(srcip).</description>
+    <mitre>
+      <id>T1110</id>
+      <id>T1110.001</id>
+    </mitre>
+    <group>authentication_failures,brute_force,</group>
+  </rule>
+
+  <rule id="100110" level="3">
+    <decoded_as>lab-sshd-success</decoded_as>
+    <description>Lab SSH successful authentication for $(user) from $(srcip).</description>
+    <group>authentication_success,</group>
+  </rule>
+
+  <rule id="100111" level="12" frequency="5" timeframe="120">
+    <if_sid>100110</if_sid>
+    <if_matched_sid>100100</if_matched_sid>
+    <same_srcip />
+    <same_user />
+    <description>Lab SSH failures followed by successful login for $(user) from $(srcip).</description>
+    <mitre>
+      <id>T1110.001</id>
+      <id>T1078</id>
+      <id>T1021.004</id>
+    </mitre>
+    <group>authentication_success,brute_force,valid_account,</group>
+  </rule>
+</group>
