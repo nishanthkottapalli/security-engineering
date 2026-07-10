@@ -93,12 +93,18 @@ jobs:
           severity: HIGH,CRITICAL
           ignore-unfixed: true
           exit-code: "0"
-  
+
       - name: Upload SARIF
-        if: github.ref == 'refs/heads/main'
+        if: >
+          always() &&
+          (
+            github.event_name == 'push' ||
+            github.event.pull_request.head.repo.full_name == github.repository
+          )
         uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: trivy-results.sarif
+
 
   secrets:
     name: Gitleaks
