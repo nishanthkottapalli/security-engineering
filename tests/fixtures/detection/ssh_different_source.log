@@ -1,0 +1,6 @@
+2026-07-10T10:00:01Z dev-web-01 sshd[1001]: Failed password for james from 203.0.113.50 port 50101 ssh2
+2026-07-10T10:00:08Z dev-web-01 sshd[1002]: Failed password for james from 203.0.113.50 port 50102 ssh2
+2026-07-10T10:00:15Z dev-web-01 sshd[1003]: Failed password for james from 203.0.113.50 port 50103 ssh2
+2026-07-10T10:00:22Z dev-web-01 sshd[1004]: Failed password for james from 203.0.113.50 port 50104 ssh2
+2026-07-10T10:00:29Z dev-web-01 sshd[1005]: Failed password for james from 203.0.113.50 port 50105 ssh2
+2026-07-10T10:00:35Z dev-web-01 sshd[1006]: Accepted password for james from 198.51.100.4 port 50106 ssh2
