@@ -54,7 +54,7 @@ up:
 	$(COMPOSE) up -d --build postgres migrate api worker gateway
 
 smoke:
-	bash ./scripts/docker_smoke.sh
+	bash scripts/docker_smoke.sh
 
 down:
 	$(COMPOSE) down --remove-orphans
