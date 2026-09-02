@@ -115,7 +115,7 @@ Remove this exception when:
 
 ## Owner
 
-Nishanth Konsultancy
+Nishanth Kottapalli
 
 ---
 
